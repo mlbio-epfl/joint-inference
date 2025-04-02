@@ -1,0 +1,54 @@
+# specify dataset here
+text_dataset: "sst2"
+
+# training parameters
+device: "cuda"
+batch_size: 8
+batch_size_eval: 100
+N: 16
+num_iterations: 3000
+eval_freq: 50
+ckpt_freq: 50
+seed: 42
+max_norm: 10
+gamma: 10
+
+optimization:
+    lr_schedule_name: constant
+    lr_schedule:
+        lr: 1e-5
+
+    optimizer:
+        _target_: torch.optim.Adam
+
+    gradient_estimator:
+        _target_: estimators.estimators.RaoMarginalized
+        with_argmax_baseline: True
+
+task_encoder:
+    _target_: encoders.llama_lora.LlamaLoRAEncoder
+    model_name: "unsloth/Meta-Llama-3.1-8B"
+    use_lora: True
+
+
+reward:
+    _target_: rewards.rewards.UnslothLlamaReward
+    device: "cuda"
+    model_name: "unsloth/Meta-Llama-3.1-8B" # find model_name in https://huggingface.co/unsloth
+
+wandb:
+    project: jointinference_llm
+    name: llama_lora_${text_dataset}
+    group: none
+
+hydra:
+  run:
+    dir: ./exp_local/unsup_ft_llm/${text_dataset}
+  job:
+    chdir: false
+
+job_id: ""
+work_dir: ???
+ckpt_path: ???
+
+

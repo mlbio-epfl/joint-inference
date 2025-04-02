@@ -1,0 +1,23 @@
+defaults:
+    - base
+    - optimization : optimization_default
+    - reward : openflamingo
+    - template : ???
+    - dataset : ???
+    - labelset: ???
+    - dataset_transforms: openflamingo
+    - task_encoder: openflamingo_lora
+    - _self_
+
+optimization:
+    lr_schedule_name: cosine
+    lr_schedule:
+        warmup_iters: 500
+        lr: 1e-4
+        final_lr: 1e-6
+        iters: ${num_iterations}
+
+batch_size: 2
+batch_size_eval: 500
+N: 16
+num_iterations: 3000

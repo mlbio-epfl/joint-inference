@@ -1,0 +1,6 @@
+reward:
+  _target_: rewards.rewards.OpenFlamingoReward
+  device: "cuda"
+  type: "BoT_minimal"
+
+name: "openflamingo"

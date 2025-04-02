@@ -1,0 +1,23 @@
+dataset:
+  _target_: torchvision.datasets.Food101
+  split: train
+  download: true
+  root: ${data_dir}
+
+dataset_eval:
+  _target_: torchvision.datasets.Food101
+  split: test
+  download: true
+  root: ${data_dir}
+
+wrapper_train:
+  _target_: utils.vision_utils.OpenFlamingoVisualFeaturesCache
+  cache_path: ${data_dir}/representations/food101_train.pth
+
+wrapper_eval:
+  _target_: utils.vision_utils.OpenFlamingoVisualFeaturesCache
+  cache_path: ${data_dir}/representations/food101_eval.pth
+
+input_dim: 768
+K: 101
+name: food101

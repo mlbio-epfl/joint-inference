@@ -1,0 +1,16 @@
+defaults:
+    - reward : openflamingo
+    - template : ???
+    - dataset: ???
+    - labelset: ???
+    - dataset_transforms: openflamingo
+    - _self_
+
+
+data_dir: ${oc.env:DATA_ROOT}
+device: "cuda"
+seed: 42
+batch_size: 128
+N: 16
+num_repeats: 3
+T: 10

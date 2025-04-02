@@ -1,0 +1,9 @@
+task_encoder:
+    _target_: encoders.linear.LinearEncoder
+    input_dim: ${dataset.input_dim}
+    num_classes: ${dataset.K}
+    wn: false
+    emb_norm: false
+    unit_wnorm: false
+
+name: linear

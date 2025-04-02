@@ -1,0 +1,30 @@
+data_dir: ${oc.env:DATA_ROOT}
+device: "cuda"
+seed: 42
+max_norm: 10
+eval: true
+eval_freq: 500
+
+job_id: ${oc.decode:${oc.env:JOB_UUID}}
+work_dir: ???
+ckpt_path: ???
+ckpt_freq: 50
+
+wandb:
+    entity: vlmji
+    project: jointinference
+    id: ${job_id}
+    name: ${task_encoder.name}
+    group: ${dataset.name}-${reward.name}
+    resume: false
+
+hydra:
+  run:
+    dir: ./exp_local/${job_id}
+  job:
+    chdir: false
+
+gamma: 10
+ratio_flipped_threshold: 0.
+threshold_window: 10
+calibrated: false

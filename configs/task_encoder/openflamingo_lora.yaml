@@ -1,0 +1,11 @@
+task_encoder:
+    _target_: encoders.openflamingo_lora.openflamingo_lora
+    class_names: ${labelset}
+    template: ${template}
+    rank: 2
+    scale: 1.0
+    apply_lora_to: ['lang']
+    inference_type: 'BoT_minimal'
+
+name: openflamingo_lora
+calibrated: ${calibrated}

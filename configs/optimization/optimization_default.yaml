@@ -1,0 +1,10 @@
+optimizer:
+  _target_: torch.optim.Adam
+
+lr_schedule_name: constant
+lr_schedule:
+  lr: 1e-3
+
+gradient_estimator:
+  _target_: estimators.estimators.RaoMarginalized
+  with_argmax_baseline: True

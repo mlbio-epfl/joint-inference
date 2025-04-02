@@ -1,0 +1,23 @@
+dataset:
+  _target_: torchvision.datasets.CIFAR100
+  train: true
+  download: true
+  root: ${data_dir}
+
+dataset_eval:
+  _target_: torchvision.datasets.CIFAR100
+  train: false
+  download: true
+  root: ${data_dir}
+
+wrapper_train:
+  _target_: utils.vision_utils.OpenFlamingoVisualFeaturesCache
+  cache_path: ${data_dir}/representations/cifar100_train.pth
+
+wrapper_eval:
+  _target_: utils.vision_utils.OpenFlamingoVisualFeaturesCache
+  cache_path: ${data_dir}/representations/cifar100_eval.pth
+
+input_dim: 768
+K: 100
+name: cifar100

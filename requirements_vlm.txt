@@ -1,0 +1,7 @@
+git+https://github.com/mlfoundations/open_flamingo.git
+open_clip_torch
+ipykernel
+hydra-core==1.3.2
+omegaconf==2.3.0
+wandb
+numpy==1.24.4

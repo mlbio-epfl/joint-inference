@@ -1,0 +1,29 @@
+transforms_train:
+  _target_: torchvision.transforms.Compose
+  transforms:
+    - _target_: torchvision.transforms.v2.Resize
+      size: 224
+      interpolation: 3
+      antialias: warn
+    - _target_: torchvision.transforms.v2.CenterCrop
+      size: 224
+    - _target_: utils.vision_utils.ConvertToRGB
+    - _target_: torchvision.transforms.v2.ToTensor
+    - _target_: torchvision.transforms.v2.Normalize
+      mean: [0.48145466, 0.4578275, 0.40821073]
+      std: [0.26862954, 0.26130258, 0.27577711]
+
+transforms_eval:
+  _target_: torchvision.transforms.Compose
+  transforms:
+    - _target_: torchvision.transforms.v2.Resize
+      size: 224
+      interpolation: 3
+      antialias: warn
+    - _target_: torchvision.transforms.v2.CenterCrop
+      size: 224
+    - _target_: utils.vision_utils.ConvertToRGB
+    - _target_: torchvision.transforms.v2.ToTensor
+    - _target_: torchvision.transforms.v2.Normalize
+      mean: [0.48145466, 0.4578275, 0.40821073]
+      std: [0.26862954, 0.26130258, 0.27577711]

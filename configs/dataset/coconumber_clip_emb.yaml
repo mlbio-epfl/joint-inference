@@ -1,0 +1,30 @@
+dataset:
+  _target_: misc.vqa_datasets.COCOQADataset
+  root: ${data_dir}
+  split: train
+  type: number
+
+dataset_eval:
+  _target_: misc.vqa_datasets.COCOQADataset
+  root: ${data_dir}
+  split: train
+  type: number
+
+wrapper_train:
+  _target_: utils.vision_utils.OpenFlamingoVisualFeaturesCache
+  cache_path: ${data_dir}/representations/coconumber_train.pth
+
+wrapper_eval:
+  _target_: utils.vision_utils.OpenFlamingoVisualFeaturesCache
+  cache_path: ${data_dir}/representations/coconumber_train.pth
+
+input_dim: 768
+K: 10
+name: coco_number
+
+# You need to manually prepare this dataset
+# Go to your ${data_dir} and do
+# mkdir COCOQA && cd COCOQA
+# wget http://www.cs.toronto.edu/~mren/imageqa/data/cocoqa/cocoqa-2015-05-17.zip # Download train and test split
+# wget http://images.cocodataset.org/zips/train2014.zip #Download train images
+# unzip "*.zip"
