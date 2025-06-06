@@ -85,6 +85,28 @@ Similarly, to run unsupervised in-context learning on vision tasks (Table 3 in t
 CUDA_VISIBLE_DEVICES=0 HYDRA_FULL_ERROR=1 python unsupervised_icl_vlm.py --config-name openflamingo_icl_base template=openflamingo_imageclassification dataset=cifar100_clip_emb labelset=cifar100_openflamingo
 ```
 
+### UICL on MMMU and MMMU-Pro
+Firts, install the required packages for the MMMU and MMMU-Pro datasets and openai API:
+```
+pip install -r requirements_mmmu.txt
+```
+Also, set your OpenAI API key as `export OPENAI_API_KEY=<YOUR KEY>`.
+
+To run a single turn (as well as 0-shot) inference of the unsupervised in-context-learning on MMMU or MMMU-Pro, you can use `unsupervised_icl_mmmu.py` script. 
+```
+python unsupervised_icl_mmmu.py \
+    --dataset <mmmu/mmmu-pro> \
+    --save_path <path to save the results> \
+    --subject_name <subject name> \
+    --uicl_path <path to UICL examples or "" for 0-shot>
+```
+We also provide an examplar script for running UICL for multiple turns in `scripts/uicl_mmmupro_example.sh`.
+
+After running the script, you can find results at `<save_path>/<subject name>/accuracy.txt`.
+
+_Note:_ it should be possible to substitute `client =  OpenAI()` with any other (supported) model via [vLLM](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html).
+
+
 ### Citing
 
 If you find our code useful, please consider citing:
